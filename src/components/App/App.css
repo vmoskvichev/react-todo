@@ -6,7 +6,7 @@
 }
 
 .todo-list {
-  max-width: 600px;
+  width: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;

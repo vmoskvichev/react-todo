@@ -1,5 +1,9 @@
 .todo-item {
     display: flex;
+    border-bottom: 1px solid lightblue;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .isDone {

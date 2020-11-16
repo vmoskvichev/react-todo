@@ -26,10 +26,11 @@ function App() {
   }
 
   const changeDone = (id) => {
+    console.log(todos)
     const copy = [...todos]
     const idx = copy.findIndex(item => item.id === id);
     copy[idx].isDone = !copy[idx].isDone;
-    return copy
+    setTodos(copy)
   }
 
   return (
@@ -42,7 +43,7 @@ function App() {
         {todos.map(({id, label, isDone}) => {
          return (
           <TodoItem 
-          key={id}
+            key={id}
             id={id} 
             label={label} 
             onDeleteTodo={deleteTodo}

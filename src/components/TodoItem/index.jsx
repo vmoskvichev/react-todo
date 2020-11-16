@@ -1,14 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './TodoItem.css';
 
 const TodoItem = ({onDeleteTodo, onChangeDone, label, id, isDone}) => {
-
+    console.log(isDone)
     return (
         <li className="todo-item">
-          <span >{label}</span>
+          <p className={isDone ? "isDone" : ''}>{label}</p>
           <div className="todo-item-actions">
-            <button onClick={() => onDeleteTodo(id)} className="delete-btn">delete</button>
             <input value={isDone} onChange={() => onChangeDone(id)} type="checkbox"/>
+            <button onClick={() => onDeleteTodo(id)} className="delete-btn">delete</button>
           </div>
         </li>
       )

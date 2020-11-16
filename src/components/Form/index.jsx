@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 const Form = ({onAddTodo}) => {
-    const [inputValue, setInputValue] = useState('')
+    const [inputValue, setInputValue] = useState('');
 
     return (
         <form onSubmit={onAddTodo} className="form">
@@ -9,7 +9,8 @@ const Form = ({onAddTodo}) => {
                 <input value={inputValue} onChange={(e) => setInputValue(e.target.value)} type="text"/>
                 <button className="add-btn" onClick={(e) => {
                     e.preventDefault();
-                    onAddTodo(inputValue)
+                    onAddTodo(inputValue);
+                    setInputValue('');
                 }}>
                     Add
                 </button>
