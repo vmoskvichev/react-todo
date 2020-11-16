@@ -1,0 +1,14 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2em 0;
+}
+
+.todo-list {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}

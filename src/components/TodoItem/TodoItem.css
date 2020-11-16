@@ -1,0 +1,7 @@
+.todo-item {
+    display: flex;
+}
+
+.isDone {
+    text-decoration: line-through;
+}
