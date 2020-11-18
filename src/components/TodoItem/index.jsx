@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import './TodoItem.css';
 
 const TodoItem = ({onDeleteTodo, onChangeDone, label, id, isDone}) => {
-    console.log(isDone)
     return (
         <li className="todo-item">
           <p className={isDone ? "isDone" : ''}>{label}</p>

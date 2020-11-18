@@ -1,10 +1,25 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import { renderRoutes } from "react-router-config";
 import './App.css';
 import Form from '../Form';
-import TodoItem from '../TodoItem';
+import { TokenContext } from '../../tokenContext';
+// import Login from "../Login";
+// import List from "../List";
+// import AppRoute from "../AppRoute";
 
-function App() {
+
+
+function App({ route }) {
   const [todos, setTodos] = useState([{id: 777, label: '12312', isDone: false}]);
+  const [token, setToken] = useState('');
+
+  console.log(route)
+
+  useEffect(() => {
+    setToken(localStorage.getItem('token'))
+  }, [])
+
+  const isAuthenticated = token;
 
   const deleteTodo = (id) => {
     const idx = todos.findIndex(item => item.id === id);
@@ -34,26 +49,14 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <Form 
-        onAddTodo={addTodo}
-      />
-
-      <ul className="todo-list">
-        {todos.map(({id, label, isDone}) => {
-         return (
-          <TodoItem 
-            key={id}
-            id={id} 
-            label={label} 
-            onDeleteTodo={deleteTodo}
-            onChangeDone={changeDone}
-            isDone={isDone}
-          />
-         )
-        })}
-      </ul>
-    </div>
+    <TokenContext.Provider value={isAuthenticated}>
+      <div className="App">
+        <Form 
+          onAddTodo={addTodo}
+        />
+          { renderRoutes(route.routes) }
+      </div>
+    </TokenContext.Provider>
   );
 }
 
