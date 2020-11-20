@@ -1,41 +1,45 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react';
 import './Login.css';
+import api from '../../services/apiService';
+import tokenService from '../../services/tokenService';
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+	const [email, setEmail] = useState('jimm1234@gmail.com');
+	const [password, setPassword] = useState('111');
 
-    const fetchToken = async () => {
-        const res = await fetch('http://localhost:4000/auth', {
-            method: 'POST',
-            body: JSON.stringify({email, password}),
-            headers: {
-              'Content-Type': 'application/json'
-            }
-        });
+	const loadToken = (e) => {
+		e.preventDefault();
+		api.auth
+			.login(email, password)
+			.then(tokenService.setToken)
+			.catch((err) => console.log('login error', err));
+	};
 
-        const {token} = await res.json()
-        localStorage.setItem('token', token);
-    }
+	return (
+		<form onSubmit={loadToken} className='login-form'>
+			<label htmlFor='email'>
+				<span>Login</span>
+				<input
+					className='input login'
+					value={email}
+					onChange={(e) => setEmail(e.target.value)}
+					type='text'
+				/>
+			</label>
 
-    return (
-        <form onSubmit={(e) => {
-            e.preventDefault()
-            fetchToken()
-        }} className="login-form">
-            <label htmlFor="email">
-                <span>Login</span>
-                <input className="input login" value={email} onChange={(e) => setEmail(e.target.value)} type="text"/>
-            </label>
+			<label htmlFor='password'>
+				<span>Password</span>
+				<input
+					className='input password'
+					value={password}
+					onChange={(e) => setPassword(e.target.value)}
+					type='password'
+				/>
+			</label>
 
-            <label htmlFor="password">
-                <span>Password</span>
-                <input className="input password" value={password} onChange={(e) => setPassword(e.target.value)} type="password"/>
-            </label>
-
-            <button type="submit">Log in</button>
-        </form>
-    )
-}
+			<button type='submit'>Log in</button>
+		</form>
+	);
+};
 
 export default Login;

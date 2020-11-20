@@ -1,12 +1,12 @@
 .todo-list {
-    width: 600px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	width: 600px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
