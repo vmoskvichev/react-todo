@@ -16,7 +16,6 @@ const subscribe = (cb) => {
 };
 
 const setToken = async (tokenValue) => {
-	console.log('set token');
 	localStorage.setItem(lsKey, tokenValue);
 	sendMessage(tokenValue);
 };
