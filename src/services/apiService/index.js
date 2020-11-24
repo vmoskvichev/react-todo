@@ -1,3 +1,4 @@
 import auth from './auth';
+import register from './register';
 
-export default { auth };
+export default { auth, register };

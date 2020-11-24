@@ -9,6 +9,7 @@ import { renderRoutes } from 'react-router-config';
 import { PrivateRoute, UnPrivateRoute } from './components/AppRoutes';
 import TodoList from './Pages/TodoList';
 import MainLayout from './components/MainLayout';
+import Register from './components/Register';
 
 const routes = [
 	{
@@ -18,6 +19,12 @@ const routes = [
 				path: '/login',
 				exact: true,
 				component: UnPrivateRoute(Login),
+			},
+
+			{
+				path: '/registration',
+				exact: true,
+				component: UnPrivateRoute(Register),
 			},
 
 			{

@@ -8,6 +8,6 @@ export const fetchData = async (url, body, method, headers = {}) => {
     if (!res.ok) {
         throw new Error(await res.json());
     } else {
-        return await res.json();	
+        return await res.json();
     }
 };
