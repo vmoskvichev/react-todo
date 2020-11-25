@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const AuthForm = ({ submit }) => {
+const AuthForm = ({ submit, btnText }) => {
     const [email, setEmail] = useState('test_0@gmail.com');
     const [password, setPassword] = useState('test_0');
 
@@ -17,7 +17,9 @@ const AuthForm = ({ submit }) => {
                 <input
                     className="input login"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => {
+                        setEmail(e.target.value)
+                    }}
                     type="text"
                 />
             </label>
@@ -32,7 +34,7 @@ const AuthForm = ({ submit }) => {
                 />
             </label>
 
-            <button type="submit">Log in</button>
+            <button type="submit">{btnText}</button>
         </form>
     );
 };

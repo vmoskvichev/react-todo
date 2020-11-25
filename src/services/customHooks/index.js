@@ -4,17 +4,16 @@ function useAPI(cb, options = {}) {
     const [state, setState] = useState({
         isError: false,
         error: {},
-        data: '',
+        data: {},
     });
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const refetch = () => {
+    const refetch = (...args) => {
         setIsLoading(true);
-        cb()
+        cb(...args)
             .then((data) => {
                 setIsLoading(false);
-
                 setState({ ...state, isError: false, error: {}, data });
 
                 if (options.afterRequset) {
@@ -24,10 +23,10 @@ function useAPI(cb, options = {}) {
             .catch((error) => {
                 setIsLoading(false);
 
-                setState({ ...state, isError: true, error, data: '' });
+                setState({ ...state, isError: true, error, data: {} });
 
                 if (options.afterRequset) {
-                    options.afterRequset({ isError: true, error, data: '' });
+                    options.afterRequset({ isError: true, error, data: {} });
                 }
             });
     };

@@ -2,31 +2,35 @@ import React, { useState } from 'react';
 import api from '../../services/apiService';
 import AuthForm from '../AuthForm';
 import { useAPI } from '../../services/customHooks';
+import { NavLink } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
-const Register = () => {
-    const [email, setEmail] = useState('test_0@gmail.com');
-    const [password, setPassword] = useState('test_0');
+const Register = ({ history, location }) => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const { refetch, isLoading, isError, error, data } = useAPI(
-        () => api.register.register(email, password),
+        api.auth.register,
         {
-            afterRequset: ({ data }) => console.log(JSON.stringify(data)),
+            afterRequset: (data) => {
+                history.push('/login');
+            },
         }
     );
 
-    const submit = (e) => {
-        e.preventDefault();
-        refetch();
+    const submit = (email, password) => {
+        setEmail(email);
+        setPassword(password);
+        refetch(email, password);
     };
 
+    const locationText = location.pathname.split('').slice(1).join('');
+
     return (
-        <AuthForm
-            onSubmit={submit}
-            onSetEmail={setEmail}
-            onSetPassword={setPassword}
-            email={email}
-            password={password}
-        />
+        <>
+            <NavLink to="/login">{locationText}</NavLink>
+            <AuthForm submit={submit} btnText={locationText} />
+        </>
     );
 };
 

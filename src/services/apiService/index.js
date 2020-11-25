@@ -1,4 +1,3 @@
-import auth from './auth';
-import register from './register';
+import  auth from './auth';
 
-export default { auth, register };
+export default { auth }

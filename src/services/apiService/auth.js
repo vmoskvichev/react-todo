@@ -1,8 +1,13 @@
 import { fetchData } from './utils';
 
 const login = async (email, password) => {
-    const { token } = await fetchData('/auth', { email, password }, 'POST');
-    return token;
+    const data = await fetchData('/auth', { email, password }, 'POST');
+    return data;
 };
 
-export default { login };
+const register = async (email, password) => {
+    const data = await fetchData('/registration', { email, password }, 'POST');
+    return data;
+};
+
+export default { login, register };
